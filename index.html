@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nom {
+            font-weight: bold;
+        }
+        .mail {
+            color: gray;
+        }
+        ul{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            list-style-type: none;
+        }
+        ul li{
+            width: 350px;
+            padding: 25px;
+            border: 1px dashed black;
+        }
+    </style>
+</head>
+</head>
+
+<body>
+    <h1>Total entreprise = <b id="total"></b></h1>
+    <ul id="list"></ul>
+
+    <script>
+        let i = [
+            { nom: "INGENOSYA", mail: "recrutement@ingenosya.mg"},
+			{ nom: "PRAKTEK", mail: "recrutement@praktek.pro"},
+			{ nom: "CONSTELLATION GROUP", mail: "recrutement@constellation-group.co"},
+			{ nom: "VatiLab", mail: "hello@vatilab.com"},
+			{ nom: "NOVITY", mail: ""},
+			{ nom: "PASSION 4 HUMANITY (P4H)", mail: ""},
+			{ nom: "SmartPredict", mail: ""},
+			{ nom: "NextA", mail: ""},
+			{ nom: "HAIRUN", mail: "recrutement@hairun-technology.com"},
+			{ nom: "PULSE", mail: "pulsetacarriere@pulse.mg"},
+			{ nom: "TELMA", mail: "recrutement@telma.mg"},
+			{ nom: "ORANGE", mail: "cv.recrutement@orange.com"},
+			{ nom: "BOCASAY", mail: "mrakotoarimalala@bocasay.com"},
+			{ nom: "LINKEO", mail: "recrute.mada@linkeo.com"},
+			{ nom: "VANILLA PAY", mail: "cto@vanilla-pay.net"},
+			{ nom: "FUTURMAP", mail: "recrutement@futurmap.com"},
+			{ nom: "SIDINA", mail: "rh@sidina.eu rh@manao.eu"},
+			{ nom: "HUMAN CART'OFFICE", mail: "recrutement@hco.mg"},
+			{ nom: "DevelopA", mail: "recrutement@developa.net"},
+			{ nom: "INFOSCRIBE.AI", mail: "recrutements@infoscribe.ai"},
+			{ nom: "SAHAZA GROUP", mail: "rh@in-progress.io"},
+			{ nom: "CSS CUSTOMER SERVICE SUBCONTRACTOR", mail: "harizafy@nuklear.io"},
+			{ nom: "WYLOG", mail: "recrutement@wylog.com"},
+			{ nom: "NEOSHORE", mail: "recrutement.madagascar@neoshore.be"},
+			{ nom: "IBONIA", mail: "recrutement@ibonia.mg"},
+			{ nom: "MyAgency", mail: "contact@myagency.mg"},
+			{ nom: "RELIA CONSULTING", mail: "recrutement@relia-consulting.com"},
+			{ nom: "DIGIDATALE", mail: "recrutement@digidatale.com"},
+			{ nom: "CODEKO.TECH", mail: "recrutement@codeko.tech"},
+			{ nom: "CODEO", mail: "recrutement-it@codeo.mg"},
+			{ nom: "IRISLAB", mail: "irislab@pm.me"},
+			{ nom: "DAGOVENTURE", mail: "dagoventuremg@gmail.com"},
+			{ nom: "ETALIK", mail: "contact@etalik.com"},
+			{ nom: "EZWAY TECHNOLOGY", mail: "recrutement@ezway-technology.com"},
+			{ nom: "JOB ITSPHERE", mail: "job.itsphere@outlook.com"},
+			{ nom: "ITRAS", mail: "recrutement@itras-group.com"},
+			{ nom: "IRARI", mail: "contact.irari@gmail.copm"},
+			{ nom: "QDATA", mail: "recrutement@qdata-mg.com"},
+			{ nom: "MADA-Digital", mail: "contact@mada-digital.net"},
+			{ nom: "POSITIV", mail: "recrutement.aida@gmail.com"},
+			{ nom: "eTech", mail: ""},
+			{ nom: "ENNOV IT", mail: "recrutement@ennov.io"},
+			{ nom: "BPO Concept", mail: "contact@bpoconcept.com"},
+			{ nom: "NUMERIKA", mail: "jobemploi.mdg@gmail.com"},
+			{ nom: "KICKLABEL", mail: "",},
+			{ nom: "DEVSOFT-PRO", mail: "contact@devsoft-pro"},
+			{ nom: "FluenTech", mail: ""},
+			{ nom: "TAMAKOA STUDIO", mail: "contact.tamakoa@gmail.com"},
+            { nom: "IN-NOVA", mail: "recrutement@in-nova.ca"},
+            { nom: "WORKAT", mail: "cv@workat.pro"},
+            { nom: "MANATALENT", mail: "recrutement@manatalent.com"},
+            { nom: "Saha Technology", mail: "commercial@saha-technology.com"},
+            { nom: "Swiftask", mail: "contact@swiftask.ai"},
+            { nom: "ORGUS", mail: "recrutement@orgus.io"},
+            { nom: "Aiky Agency", mail: "contact@aikyagency.site",},
+            { nom: "GOLDTALENT", mail: "joinus@goldtalent.mg"},
+            { nom: "WORKAT", mail: "contactmada@hikamsm.com"},
+            { nom: "Human Talent Consulting", mail: "talent@human-talent-consulting.com"},
+            { nom: "Studia Inc", mail: "recrutement@std-inc.mg"},
+            { nom: "Vivetic", mail: ""},
+            { nom: "Nuklear", mail: "antsa.harizafy@nuklear.io"},
+
+
+        ]
+
+        i.sort(function(a, b) {
+            return a.nom.localeCompare(b.nom);
+        });
+        var total = document.getElementById("total");
+        total.textContent = i.length;
+        var ul = document.getElementById("list");
+        i.forEach(function(entreprise) {
+            var li = document.createElement("li");
+            var spanNom = document.createElement("span");
+            spanNom.className = "nom";
+            spanNom.textContent = entreprise.nom;
+            var pMail = document.createElement("p");
+            pMail.className = "mail";
+            pMail.textContent = entreprise.mail;
+            li.appendChild(spanNom);
+            li.appendChild(pMail);
+            ul.appendChild(li);
+        });
+    </script>
+</body>
+
+</html>
