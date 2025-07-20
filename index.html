@@ -23,12 +23,38 @@
             padding: 25px;
             border: 1px dashed black;
         }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+            outline: none;
+        }
+        .hidden {
+            display: none;
+        }
+        .results-info {
+            margin: 10px 0;
+            color: #666;
+            font-style: italic;
+        }
     </style>
 </head>
 </head>
 
 <body>
     <h1>Total entreprise = <b id="total"></b></h1>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Rechercher par nom ou email...">
+        <div class="results-info" id="resultsInfo"></div>
+    </div>
+    
     <ul id="list"></ul>
 
     <script>
@@ -101,21 +127,57 @@
         i.sort(function(a, b) {
             return a.nom.localeCompare(b.nom);
         });
+        
         var total = document.getElementById("total");
-        total.textContent = i.length;
         var ul = document.getElementById("list");
-        i.forEach(function(entreprise) {
-            var li = document.createElement("li");
-            var spanNom = document.createElement("span");
-            spanNom.className = "nom";
-            spanNom.textContent = entreprise.nom;
-            var pMail = document.createElement("p");
-            pMail.className = "mail";
-            pMail.textContent = entreprise.mail;
-            li.appendChild(spanNom);
-            li.appendChild(pMail);
-            ul.appendChild(li);
+        var searchInput = document.getElementById("searchInput");
+        var resultsInfo = document.getElementById("resultsInfo");
+        
+        // Fonction pour afficher les entreprises
+        function displayEntreprises(entreprises) {
+            ul.innerHTML = '';
+            entreprises.forEach(function(entreprise) {
+                var li = document.createElement("li");
+                var spanNom = document.createElement("span");
+                spanNom.className = "nom";
+                spanNom.textContent = entreprise.nom;
+                var pMail = document.createElement("p");
+                pMail.className = "mail";
+                pMail.textContent = entreprise.mail;
+                li.appendChild(spanNom);
+                li.appendChild(pMail);
+                ul.appendChild(li);
+            });
+        }
+        
+        // Fonction de recherche
+        function searchEntreprises(searchTerm) {
+            if (searchTerm.trim() === '') {
+                displayEntreprises(i);
+                total.textContent = i.length;
+                resultsInfo.textContent = '';
+                return;
+            }
+            
+            const filtered = i.filter(function(entreprise) {
+                const nomMatch = entreprise.nom.toLowerCase().includes(searchTerm.toLowerCase());
+                const mailMatch = entreprise.mail.toLowerCase().includes(searchTerm.toLowerCase());
+                return nomMatch || mailMatch;
+            });
+            
+            displayEntreprises(filtered);
+            total.textContent = filtered.length;
+            resultsInfo.textContent = `${filtered.length} résultat(s) trouvé(s) pour "${searchTerm}"`;
+        }
+        
+        // Événement de recherche en temps réel
+        searchInput.addEventListener('input', function() {
+            searchEntreprises(this.value);
         });
+        
+        // Affichage initial
+        displayEntreprises(i);
+        total.textContent = i.length;
     </script>
 </body>
 
